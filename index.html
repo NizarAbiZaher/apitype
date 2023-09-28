@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Button</title>
+</head>
+<body>
+    <button id="button">
+        Click Me
+    </button>
+    <input class="input"/>
+</body>
+<script>
+    const baseUrl = 'http://localhost:2000'
+
+    const button = document.getElementById('button');
+    const input = document.getElementById('input'); // Get the input element by id
+
+    button.addEventListener('click', response)
+
+    async function response(e) {
+        e.preventDefault();
+        try {
+            const res = await fetch(`${baseUrl}/api`);
+            const data = await res.json();
+            alert(data.message)
+        }
+        catch (err) {
+            console.log(err)
+        }
+        input.value = data.message
+    }
+
+</script>
+</html>
